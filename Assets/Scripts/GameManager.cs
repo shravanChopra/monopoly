@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
 
         // p1 starts
         activePlayerIndex = 0;
-        pActivePlayer = this.players[activePlayerIndex];           
+        pActivePlayer = this.players[activePlayerIndex];
+        UIManager.DisplayPreTurnUI();
 	}
 	
 	// Update is called once per frame
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
 		
 	}
 
-    public void RollDiceAndMovePlayer()
+    public void RollDiceAndStartTurn()
     {
         int diceRoll = Random.Range(1, 7);                                  // TODO: extend to two dice!
         Debug.Log("==============> Dice outcome: " + diceRoll);
@@ -41,17 +42,15 @@ public class GameManager : MonoBehaviour
         {
             newPosition %= 40;
         }
-
         pActivePlayer.MoveTo(newPosition);
 
-        // TODO: start the player's turn
+        UIManager.DisplayTurnUI();
     }
 
-    public void EndCurrentTurnAndSwitchToNextPlayer()
+    public void EndTurnAndSwitchToNextPlayer()
     {
-        // TODO: flip the current player to 'READY'
-
         this.PrivPrepareNextPlayer();
+        UIManager.DisplayPreTurnUI();
 
         this.PrivLogPlayerPositions();
     }
