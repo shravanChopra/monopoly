@@ -1,27 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
     private int boardPosition; 
 
-	// Use this for initialization
-	void Start ()
+	public Player()
     {
-        this.boardPosition = 0;                // always start at GO
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		// do your magic...
-	}
+        this.boardPosition = 0;
+    }
 
     // Game Manager is responsible for computing new position and assigning to the player
     public void MoveTo(int newPosition)
     {
         this.boardPosition = newPosition;
+    }
+
+    public void Update()
+    {
+        // update based on the current state
     }
 
     public int GetPosition()
